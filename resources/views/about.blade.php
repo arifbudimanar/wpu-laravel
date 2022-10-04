@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About</title>
-</head>
-
-<body>
-    <h1>About</h1>
-    <h2>{{ $name }}</h2>
-    <p>{{ $email }}</p>
-    <img src="/image/{{ $image }}" alt="" width="100">
-</body>
-
-</html>
+@extends('layouts.main')
+@section('container')
+<h1>About</h1>
+<h2>{{ $name }}</h2>
+<p>{{ $email }}</p>
+<img src="/image/{{ $image }}" alt="{{ $image }}" width="100">
+@endsection
