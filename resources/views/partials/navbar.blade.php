@@ -19,9 +19,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ ($title === "About")?'active':'' }}" href="/about">About</a>
                 </li>
-
             </ul>
-
         </div>
     </div>
 </nav>
