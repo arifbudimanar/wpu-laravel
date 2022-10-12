@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('container')
-<h1>Halaman Post</h1>
+<h1>Post</h1>
 {{-- @dd($post) --}}
 
 <article class="mb-5">
