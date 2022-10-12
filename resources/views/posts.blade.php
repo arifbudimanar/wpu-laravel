@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('container')
-<h1>Blog</h1>
+<h1>{{ $title }}</h1>
 @foreach ($posts as $post)
 
 <article class="mb-5 border-bottom pb-4">
@@ -13,8 +13,6 @@
     <p>{{ $post->excerpt }}</p>
     <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more ...</a>
 </article>
-
-
-
 @endforeach
+
 @endsection
