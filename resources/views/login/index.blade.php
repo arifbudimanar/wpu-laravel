@@ -4,6 +4,15 @@
 <div class="row justify-content-center">
     <div class="col-lg-5">
         <main class="form-signin w-100 m-auto">
+
+            @if (session()->has('status'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>{{ session('status') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
+
             <form>
                 <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
 

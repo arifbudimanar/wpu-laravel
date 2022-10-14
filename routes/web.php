@@ -51,9 +51,12 @@ Route::get('/categories', function () {
 
     ]);
 });
+// Login Route
+Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/login', [LoginController::class, 'index']);
+// Register Route
 Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [
