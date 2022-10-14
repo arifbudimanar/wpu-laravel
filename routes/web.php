@@ -64,11 +64,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard Route
 Route::get('/dashboard', function () {
-    return view('dashboard.index', [
-        // 'title' => 'Dashboard',
-        // 'active' => 'dashboard'
-    ]);
+    return view('dashboard.index');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('dashboard/posts', \App\Http\Controllers\DashboardPostController::class)->middleware(['auth']);
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [
