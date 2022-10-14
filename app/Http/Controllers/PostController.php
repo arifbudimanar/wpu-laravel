@@ -10,6 +10,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts', [
+            'active' => 'posts',
             'title' => 'All Posts',
             // 'posts' => Post::all()
 
@@ -17,13 +18,14 @@ class PostController extends Controller
             // 'posts' => Post::latest()->get()
 
             //Lazy Loading
-            'posts' => Post::with(['author','category'])->latest()->get()
+            'posts' => Post::latest()->get()
         ]);
     }
 
     public function show(Post $post)
     {
         return view('post', [
+            'active' => 'posts',
             'title' => 'Single Post',
             'post' => $post
         ]);
