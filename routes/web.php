@@ -52,11 +52,23 @@ Route::get('/categories', function () {
     ]);
 });
 // Login Route
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+//Logut Route
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Register Route
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+// Dashboard Route
+Route::get('/dashboard', function () {
+    return view('dashboard.index', [
+        // 'title' => 'Dashboard',
+        // 'active' => 'dashboard'
+    ]);
+})->middleware(['auth'])->name('dashboard');
 
 // Route::get('/categories/{category:slug}', function (Category $category) {
 //     return view('posts', [

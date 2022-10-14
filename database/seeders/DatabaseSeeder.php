@@ -36,18 +36,20 @@ class DatabaseSeeder extends Seeder
             'slug' => 'personal'
         ]);
 
-        // User::create([
-        //     'name' => 'Arif Budiman Arrosyid',
-        //     'email' => 'arifbudimanarrosyid@gmail.com',
-        //     'password' => bcrypt('password')
-        // ]);
+        User::create([
+            'name' => 'Arif Budiman Arrosyid',
+            'username' => 'arifbudimanarrosyid',
+            'email' => 'arifbudimanarrosyid@gmail.com',
+            'password' => bcrypt('password')
+        ]);
 
-        // User::create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@admin.com',
-        //     'password' => bcrypt('password'),
-        //     'is_admin' => true
-        // ]);
+        User::create([
+            'name' => 'Admin',
+            'username' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'),
+            'is_admin' => true
+        ]);
 
         // Post::create([
         //     'title' => 'Judul Post Pertama',
