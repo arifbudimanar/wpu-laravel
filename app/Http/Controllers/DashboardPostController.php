@@ -6,7 +6,9 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class DashboardPostController extends Controller
 {
@@ -20,6 +22,8 @@ class DashboardPostController extends Controller
 
         return view('dashboard.posts.index', [
             'posts' => Post::where('user_id', auth()->user()->id)->latest()->get()
+
+
         ]);
     }
 
@@ -51,7 +55,7 @@ class DashboardPostController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
 
@@ -84,10 +88,30 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
+
+        // auth agar tidak bisa edit post yang post user id nya tidak sama dengan user id yang login
+        if ($post->user_id != auth()->user()->id ) {
+            abort(403);
+        }
+
         return view('dashboard.posts.edit', [
             'post' => $post,
             'categories' => Category::all()
         ]);
+
+        // bisa juga ditulis dengan cara ini
+        // if ($post->user_id != auth()->user()->id ) {
+        //     abort(403);
+        // }{
+        //     return view('dashboard.posts.edit', [
+        //         'post' => $post,
+        //         'categories' => Category::all()
+        //     ]);
+        // }
+
+
+
+
     }
 
     /**
@@ -105,6 +129,12 @@ class DashboardPostController extends Controller
             'category_id' => 'required',
             'body' => 'required',
         ];
+
+
+
+        // if ($request->user_id != $post->user_id) {
+        //     abort(403);
+        // }
 
         if ($request->slug != $post->slug) {
             // $validatedData['slug'] = $request->slug;

@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Post;
-use App\Models\User;
+use App\Http\Controllers\AdminCategoryController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -72,3 +71,6 @@ Route::get('/dashboard', function () {
     ->middleware(['auth'])->name('dashboard');
 
 Route::resource('dashboard/posts', DashboardPostController::class)->middleware(['auth']);
+
+Route::resource('dashboard/categories', AdminCategoryController::class)->except(['show'])
+    ->middleware(['admin']);
