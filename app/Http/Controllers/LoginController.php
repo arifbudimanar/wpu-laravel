@@ -18,7 +18,9 @@ class LoginController extends Controller
     {
         // Validate
         $credentials = $request->validate([
-            'email' => 'required|email:dns',
+            'email' => 'required|email:rfc',
+            //kalau validation email:dns, maka harus gunakan akun beneran,
+            //kalau validation email ingin menggunakan akun dummy, maka gunakan email:rfc
             'password' => 'required'
         ]);
 

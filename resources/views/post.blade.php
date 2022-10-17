@@ -11,12 +11,17 @@
             </p>
             {{-- <p>{{ $post->excerpt }}</p> --}}
 
-            <img src="https://source.unsplash.com/1200x400?{{ $post->category->name }}"
-                alt="{{ $post->category->name }}" class="img-fluid">
 
-                <article class="my-3 fs-5">
-                    {!! $post->body !!}
-                </article>
+            @if ($post->image)
+            <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->category->name }}" class="img-fluid">
+            @else
+            <img src="https://source.unsplash.com/500x400?{{ $post->category->name }}" class="card-img-top"
+                alt="{{ $post->category->name }}">
+            @endif
+
+            <article class="my-3 fs-5">
+                {!! $post->body !!}
+            </article>
 
 
 

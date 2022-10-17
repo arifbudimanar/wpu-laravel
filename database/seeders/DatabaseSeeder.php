@@ -16,8 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
-        Post::factory(100)->create();
+
 
 
 
@@ -50,6 +49,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
             'is_admin' => true
         ]);
+
+        \App\Models\User::factory(10)->create();
+        Post::factory(100)->create();
 
         // Post::create([
         //     'title' => 'Judul Post Pertama',
