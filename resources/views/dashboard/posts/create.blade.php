@@ -1,5 +1,7 @@
 @extends('dashboard.layouts.main')
+
 @section('container')
+
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -11,8 +13,7 @@
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
                 <input type="text" class="form-control
-                @error('title') is-invalid @enderror"
-                id="title" name="title" required autofocus
+                @error('title') is-invalid @enderror" id="title" name="title" required autofocus
                     value="{{ old('title') }}">
 
                 @error('title')
@@ -26,8 +27,7 @@
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
                 <input type="text" class="form-control
-                @error('slug') is-invalid @enderror"
-                id="slug" name="slug" required value="{{ old('slug') }}">
+                @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
 
                 @error('slug')
                 <div class="invalid-feedback">
@@ -43,7 +43,7 @@
 
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}" {{ old('category_id')==$category->id ? ' selected' : ' ' }}>
-                    {{$category->name }}</option>
+                        {{$category->name }}</option>
                     @endforeach
 
                 </select>
@@ -54,9 +54,7 @@
                 <img class="img-preview img-fluid">
 
                 <input class="form-control
-                @error('image') is-invalid @enderror"
-                type="file" id="image" name="image"
-                    onchange="previewImage()">
+                @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
 
                 @error('image')
                 <div class="invalid-feedback">
@@ -76,12 +74,9 @@
 
             </div>
 
-
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
-
     </div>
-
 </main>
 
 <script>
@@ -126,4 +121,5 @@
 
 
 </script> --}}
+
 @endsection

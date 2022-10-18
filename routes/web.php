@@ -19,6 +19,7 @@ use App\Http\Controllers\DashboardPostController;
 |
 */
 
+// Home Route
 Route::get('/', function () {
     return view('home', [
         'active' => 'home',
@@ -26,6 +27,7 @@ Route::get('/', function () {
     ]);
 });
 
+// About Route
 Route::get('/about', function () {
     return view(
         'about',
@@ -39,18 +41,21 @@ Route::get('/about', function () {
     );
 });
 
+// Blog Route
 Route::get('/blog', [PostController::class, 'index']);
 
+// Single Post Route
 Route::get('post/{post:slug}', [PostController::class, 'show']);
 
+// Categories Route
 Route::get('/categories', function () {
     return view('categories', [
         'active' => 'categories',
         'title' => 'Categories',
         'categories' => Category::all()
-
     ]);
 });
+
 // Login Route
 Route::get('/login', [LoginController::class, 'index'])
     ->middleware('guest')->name('login');
@@ -70,7 +75,12 @@ Route::get('/dashboard', function () {
 })
     ->middleware(['auth'])->name('dashboard');
 
+// Dashboard Post Route
 Route::resource('dashboard/posts', DashboardPostController::class)->middleware(['auth']);
 
+// Dashboard Category Route
 Route::resource('dashboard/categories', AdminCategoryController::class)->except(['show'])
     ->middleware(['admin']);
+
+
+// Ketik 'php artisan route:list' untuk melihat daftar route yang telah dibuat.

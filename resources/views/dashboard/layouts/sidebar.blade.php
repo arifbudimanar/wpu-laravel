@@ -16,7 +16,6 @@
         </ul>
 
         @can('admin')
-
         <h6 class="sidebar-heading d-flex justify-content-beetween align-items-center px-3 mt-4 mb-1">
             <span>Administrator</span>
         </h6>

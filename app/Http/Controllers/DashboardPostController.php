@@ -90,7 +90,7 @@ class DashboardPostController extends Controller
     {
 
         // auth agar tidak bisa edit post yang post user id nya tidak sama dengan user id yang login
-        if ($post->user_id != auth()->user()->id ) {
+        if ($post->user_id != auth()->user()->id) {
             abort(403);
         }
 

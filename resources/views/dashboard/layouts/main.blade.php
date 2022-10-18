@@ -27,9 +27,11 @@
 
     <div class="container-fluid">
         <div class="row">
+
             @include('dashboard.layouts.sidebar')
 
             @yield('container')
+
         </div>
     </div>
 
