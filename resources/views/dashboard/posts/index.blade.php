@@ -16,12 +16,21 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
+        @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session('error') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
 
         <table class="table table-striped col-lg-8">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Judul</th>
+                    @can('admin')
+                    <th scope="col">Author</th>
+                    @endcan
                     <th scope="col">Category</th>
                     <th scope="col">Action</th>
 
@@ -33,6 +42,9 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $post->title }}</td>
+                    @can('admin')
+                    <td>{{ $post->author->name }}</td>
+                    @endcan
                     <td>{{ $post->category->name }}</td>
                     <td>
                         <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span data-feather="eye"
