@@ -19,7 +19,7 @@
         <table class="table table-striped col-lg-8">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Category Name</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -27,16 +27,16 @@
             <tbody>
                 @foreach ($categories as $category)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $category->id }}</td>
                     <td>{{ $category->name }}</td>
 
                     <td>
-                        <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info"><span data-feather="eye"
-                                class="align-text-bottom"></span></a>
-                        <a href="/dashboard/categories/{{ $category->slug }}/edit" class="badge bg-warning"><span
+                        {{-- <a href="/dashboard/categories/{{ $category->slug }}" class="badge bg-info"><span data-feather="eye"
+                                class="align-text-bottom"></span></a> --}}
+                        <a href="/dashboard/categories/{{ $category->id }}/edit" class="badge bg-warning"><span
                                 data-feather="edit" class="align-text-bottom"></span></a>
 
-                        <form action="/dashboard/categories/{{ $category->slug }}" method="POST" class="d-inline">
+                        <form action="/dashboard/categories/{{ $category->id }}" method="POST" class="d-inline">
                             @method('delete')
                             @csrf
                             <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')">

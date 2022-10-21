@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Hamcrest\Core\HasToString;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
@@ -38,7 +40,7 @@ class AdminCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -49,7 +51,13 @@ class AdminCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:categories',
+            'slug' => 'required|unique:posts',
+        ]);
+        Category::create($validatedData);
+
+        return redirect('/dashboard/categories')->with('success', 'Categories Created Successfully');
     }
 
     /**
@@ -71,7 +79,9 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit', [
+            'category' => $category,
+        ]);
     }
 
     /**
@@ -83,7 +93,13 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255|unique:categories',
+            'slug' => 'required|unique:posts',
+        ]);
+        Category::where('id', $category->id)->update($validatedData);
+
+        return redirect('/dashboard/categories')->with('success', 'Category has beed updated successfully');
     }
 
     /**
@@ -94,6 +110,9 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // dd($category);
+        Category::destroy($category->id);
+
+        return redirect('/dashboard/categories')->with('success', 'Category has been deleted successfully');
     }
 }
