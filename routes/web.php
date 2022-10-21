@@ -79,7 +79,7 @@ Route::get('/dashboard', function () {
 Route::resource('dashboard/posts', DashboardPostController::class)->middleware(['auth']);
 
 // Dashboard Category Route
-Route::resource('dashboard/categories', AdminCategoryController::class)->except(['show'])
+Route::resource('dashboard/categories', AdminCategoryController::class)->except([''])
     ->middleware(['admin']);
 
 

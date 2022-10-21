@@ -21,9 +21,11 @@ class DashboardPostController extends Controller
     {
         // auth user is admin show all posts
         if (Auth::user()->is_admin == true) {
-            $posts = Post::orderBy('created_at', 'desc')->get();
+            // show all posts with paginate
+
+            $posts = Post::latest()-> paginate(10);
         } else {
-            $posts = Post::where('user_id', auth()->user()->id)->latest()->get();
+            $posts = Post::where('user_id', auth()->user()->id)->latest()->paginate(10);
         }
 
         return view('dashboard.posts.index', ['posts' => $posts]);
@@ -98,7 +100,7 @@ class DashboardPostController extends Controller
         // auth agar tidak bisa edit post yang post user id nya tidak sama dengan user id yang login
         if ($post->user_id != auth()->user()->id) {
             // abort(403);
-            return back()->with('error', 'You are not authorized to access this page');
+            return back()->with('error', 'You are not authorized to edit this post');
         }
         // if (auth()->user()->is_admin === true) {
         //     return view('dashboard.posts.edit', [
@@ -175,6 +177,11 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        if ($post->user_id != auth()->user()->id) {
+            // abort(403);
+            return back()->with('error', 'You are not authorized to delete this post');
+        }
+
         if ($post->image) {
             Storage::delete($post->image);
         }

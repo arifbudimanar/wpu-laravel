@@ -26,7 +26,7 @@
         <table class="table table-striped col-lg-8">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Judul</th>
                     @can('admin')
                     <th scope="col">Author</th>
@@ -40,7 +40,7 @@
 
                 @foreach ($posts as $post)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
                     @can('admin')
                     <td>{{ $post->author->name }}</td>
@@ -62,10 +62,19 @@
 
                     </td>
                 </tr>
+
                 @endforeach
 
+
             </tbody>
+
         </table>
+        {{-- @can('admin')
+        {{ $posts->links() }}
+        @endcan --}}
+        <div class="d-flex justify-content-center mt-4">
+            {{ $posts->links() }}
+        </div>
     </div>
 
 </main>
