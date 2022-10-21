@@ -23,7 +23,7 @@ use App\Http\Controllers\DashboardPostController;
 Route::get('/', function () {
     return view('home', [
         'active' => 'home',
-        'title' => 'Home'
+        'title' => 'Home',
     ]);
 });
 

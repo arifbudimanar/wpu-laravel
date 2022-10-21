@@ -115,6 +115,11 @@
 <div class="d-flex justify-content-center mt-4">
     {{ $posts->links() }}
 </div>
+<div class="container py-4">
+    <footer class="pt-3 mt-4 text-muted border-top">
+        &copy; 2022 - made with Laravel 8 and Bootstrap 5
+    </footer>
+</div>
 
 {{-- @foreach ($posts->skip(1) as $post)
 <article class="mb-5 border-bottom pb-4">
