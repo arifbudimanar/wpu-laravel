@@ -34,7 +34,7 @@ class PostController extends Controller
             //Lazy Loading
             // 'posts' => Post::latest()->get()
 
-            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate('7')->withQueryString()
+            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 
